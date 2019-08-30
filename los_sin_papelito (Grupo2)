@@ -1,0 +1,20 @@
+#!/bin/bash
+
+directorio="pepe"
+
+if [ -d $directorio ]; then
+        echo "El directorio ya existe"
+else
+    mkdir $directorio
+
+fi 
+cantidad=`ls -l $directorio|grep "^-"|wc -l`
+
+
+
+if [ $cantidad = 3 ]; then 
+ echo "el directorio contiene 3 archivos"
+else
+  echo "El directorio No tiene 3 archivos"
+
+fi
