@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dir="pepe"
+
+if [ -d $dir ]
+then
+   echo "El directorio ${dir} existe"
+else
+   echo "El directorio ${dir} o no existe"
+fi
