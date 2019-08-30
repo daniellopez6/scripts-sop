@@ -1,0 +1,34 @@
+#!/bin/bash
+nombre=""
+while true
+do
+	echo ingrese opcion
+	echo 1-crear directorio llamado segundo y validar su nombre
+	echo 2-crear enlace y validad el nombre del enlace
+	echo 3- salir
+	read opcion
+	case $opcion in
+		1)
+			mkdir ./segundo
+			echo se creo el directorio correctamente
+			nombre=$(ls | find segundo -type d)
+			if test $nombre = 'segundo'
+			then
+				echo se  creo el directorio con el nombre segundo correctamente
+			fi
+			;;
+		2)
+			ln script tercero
+			enombre=$(ls -l | find tercero -type -)
+			if test $enombre = 'tercero'
+			then
+				echo el nombre del enlace es correcto
+			fi
+			;;
+		3)
+			echo se finalizo el programa
+			rmdir ./segundo
+			break;;
+	esac
+
+done
