@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+if [ $(ls -l pepe | grep ^d | wc -l) -eq 3 ];
+then echo "Hay 3 carpetas en el directorio pepe"
+else echo "No hay 3 carpetas en el directorio pepe"
+fi
