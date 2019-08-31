@@ -1,0 +1,64 @@
+#!/bin/bash
+opcion=-1
+
+while [ $opcion != 3 ];
+do 
+clear
+        echo "####################################################"
+        echo "                      Menu                          "
+        echo "1 - Archivos por subidirectorio                     "
+        echo "2 - Accesos de Ejecución                            "
+        echo "3 - Salir                                           "
+        echo "                                                    "
+        echo "####################################################"
+
+read opcion 
+case $opcion in
+1)
+        echo "Archivos por subdirectorios"
+        echo "Ingrese la ruta a contabilizar"
+        read ruta
+        du -S $ruta|awk '{print $2}'|sort | while IFS='\n' read dir ; 
+        do
+                narchivo=`ls -l $dir |grep ^-|wc -l`
+
+                echo  "$narchivo arhivos en         $dir"
+
+        done 
+
+        echo "-----------------  Fin de Listado ----------------"
+;;
+2)
+        echo "Ejecutar permisos de ejecución a un archivo"
+        echo "Ingrese el archivo a dar acceso con su ruta si absoluta"
+        read archivo
+        if  [ -f $archivo ];then
+
+                estado=`ls -l $archivo`
+                echo "El estado actual es  : $estado"
+                chmod +x $archivo
+                if  [ $? == 0 ]; then 
+                        echo "Asignación de permisos correcta"
+                else
+                        echo "No se pudo asignar los permisos correctos"
+                fi
+                estado=`ls -l $archivo`
+                echo "El estado despues de la operacion es  : $estado"
+        else
+                echo "El archivo no existe o no es un archivo regular"
+        fi 
+;;
+3)
+        echo "Gracias por tu tiempo!"
+        break
+;;
+
+*)
+        echo "Opción Incorrecta"
+;;
+
+esac
+read nada
+
+
+done
